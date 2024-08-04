@@ -3,7 +3,12 @@ let markovModel = {};
 // Function to fetch and process the dataset
 function fetchData() {
   fetch('data.txt')
-    .then(response => response.text())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.text();
+    })
     .then(text => {
       const processedData = processText(text);
       markovModel = buildMarkovModel(processedData);
