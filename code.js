@@ -1,16 +1,16 @@
 let markovModel = {};
 
-// Function to read and process the dataset from a file
-function readFile(file) {
-  const reader = new FileReader();
-  
-  reader.onload = function(event) {
-    const text = event.target.result;
-    const processedData = processText(text);
-    markovModel = buildMarkovModel(processedData);
-  };
-  
-  reader.readAsText(file);
+// Function to fetch and process the dataset
+function fetchData() {
+  fetch('data.txt')
+    .then(response => response.text())
+    .then(text => {
+      const processedData = processText(text);
+      markovModel = buildMarkovModel(processedData);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
 }
 
 // Function to process the text
@@ -54,10 +54,5 @@ function predictNextWord() {
   resultElement.textContent = `Next word prediction after '${currentWord}': ${nextWord}`;
 }
 
-// Event listener for file input
-document.getElementById('fileInput').addEventListener('change', function(event) {
-  const file = event.target.files[0];
-  if (file) {
-    readFile(file);
-  }
-});
+// Fetch the data when the page loads
+window.onload = fetchData;
