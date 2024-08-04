@@ -1,8 +1,11 @@
 let markovModel = {};
 
+// URL of the data.txt file in GitHub Pages
+const dataUrl = 'https://your-username.github.io/your-repository/data.txt';
+
 // Function to fetch and process the dataset
 function fetchData() {
-  fetch('data.txt')
+  fetch(dataUrl)
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok ' + response.statusText);
