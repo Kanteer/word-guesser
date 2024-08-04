@@ -1,7 +1,7 @@
 let markovModel = {};
 
 // URL of the data.txt file in GitHub Pages
-const dataUrl = 'https://your-username.github.io/your-repository/data.txt';
+const dataUrl = 'https://kanteer.github.io/word-guesser/data.txt';
 
 // Function to fetch and process the dataset
 function fetchData() {
